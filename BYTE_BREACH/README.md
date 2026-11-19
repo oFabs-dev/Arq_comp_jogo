@@ -3,7 +3,7 @@
 Jogo de navegador para treinar os termos da aula de Tópicos de Arquitetura Computacional.
 Vírus descem pela tela carregando pistas sobre os componentes do computador. Arraste o termo certo até cada vírus para destruí-lo antes que ele derrube os servidores!
 
-🔗 **Jogue aqui:** https://ofabs-dev.github.io/Arq_comp_jogo/jogo%20arqui-comp/
+🔗 **Jogue aqui:** https://ofabs-dev.github.io/Arq_comp_jogo/BYTE_BREACH/
 
 ## Como jogar
 

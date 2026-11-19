@@ -4,7 +4,7 @@ Jogo de navegador para estudar os termos da disciplina de **Tópicos de Arquitet
 
 Vírus invadem a rede e descem pela tela carregando **pistas** sobre componentes do computador (CPU, RAM, cache, barramentos...). Sua missão é **arrastar o termo certo até cada vírus** para destruí-lo antes que ele chegue aos servidores. Se os vírus derrubarem todos os servidores, o sistema é infectado e o jogo acaba.
 
-🔗 **Jogue online:** https://ofabs-dev.github.io/Arq_comp_jogo/jogo%20arqui-comp/ *(requer o GitHub Pages ativado no repositório)*
+🔗 **Jogue online:** https://ofabs-dev.github.io/Arq_comp_jogo/BYTE_BREACH/
 
 ---
 
@@ -16,7 +16,7 @@ Não precisa instalar nada. O jogo é feito só com HTML, CSS e JavaScript puros
    ```bash
    git clone https://github.com/oFabs-dev/Arq_comp_jogo.git
    ```
-2. Abra o arquivo [`jogo arqui-comp/index.html`](jogo%20arqui-comp/index.html) no navegador.
+2. Abra o arquivo [`BYTE_BREACH/index.html`](BYTE_BREACH/index.html) no navegador.
 
 Funciona no computador (mouse) e no celular (toque).
 
@@ -92,7 +92,7 @@ No final, a tela de resultado mostra os pontos, a onda alcançada, o maior combo
 | Memórias | RAM, ROM, EEPROM, Flash, Cache, Memória de massa |
 | Comunicação e sistemas | DMA, Address bus, Data bus, Microcontrolador |
 
-A lista completa com as pistas está no [README do jogo](jogo%20arqui-comp/README.md) e no glossário dentro do próprio jogo.
+A lista completa com as pistas está no [README do jogo](BYTE_BREACH/README.md) e no glossário dentro do próprio jogo.
 
 ---
 
@@ -100,7 +100,7 @@ A lista completa com as pistas está no [README do jogo](jogo%20arqui-comp/READM
 
 ```
 Arq_comp_jogo/
-└── jogo arqui-comp/
+└── BYTE_BREACH/
     ├── index.html   → telas do jogo (início, jogo e resultado)
     ├── style.css    → visual (tema roxo cyberpunk, vírus, servidores, animações)
     ├── dados.js     → os 16 termos, suas pistas, explicações e as situações do dia a dia
@@ -110,5 +110,5 @@ Arq_comp_jogo/
 
 ### Personalizando
 
-- Para mudar **termos, pistas ou situações**, edite [`dados.js`](jogo%20arqui-comp/dados.js).
-- Para ajustar **pontuação, velocidade, ondas e dificuldades**, altere as constantes no topo de [`script.js`](jogo%20arqui-comp/script.js) (`ONDAS`, `DIFICULDADES`, `PONTOS_POR_ACERTO`, `COMBO_MAXIMO`, `CHEFE_*`...).
+- Para mudar **termos, pistas ou situações**, edite [`dados.js`](BYTE_BREACH/dados.js).
+- Para ajustar **pontuação, velocidade, ondas e dificuldades**, altere as constantes no topo de [`script.js`](BYTE_BREACH/script.js) (`ONDAS`, `DIFICULDADES`, `PONTOS_POR_ACERTO`, `COMBO_MAXIMO`, `CHEFE_*`...).
