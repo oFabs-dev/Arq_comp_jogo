@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BYTE BREACH — Arquitetura Computacional</title>
+  <!-- Fontes: Orbitron (títulos), Exo 2 (textos) e Share Tech Mono (detalhes de terminal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+
+    <!-- TELA 1: INÍCIO -->
+    <section id="tela-inicio" class="tela ativa">
+
+      <!-- Topo: logo, dificuldade e botão de iniciar -->
+      <div class="hero">
+        <div id="hero-virus" class="hero-virus" aria-hidden="true"></div>
+
+        <p class="tag-sistema">&gt; sistema://arquitetura_computacional</p>
+        <h1 class="logo" data-text="BYTE BREACH">BYTE <span>BREACH</span></h1>
+        <p class="subtitulo">Vírus estão invadindo o sistema. Use os termos da aula para proteger os servidores.</p>
+
+        <div id="dificuldades" class="dificuldades"></div>
+
+        <div class="botoes-inicio">
+          <button id="btn-comecar" class="btn btn-principal btn-iniciar">▶ Iniciar</button>
+          <button id="btn-glossario" class="btn">📖 Glossário</button>
+        </div>
+        <p id="recorde-inicio" class="recorde"></p>
+      </div>
+
+      <!-- Como jogar em 3 passos -->
+      <div class="passos">
+        <div class="passo">
+          <span class="passo-numero">01</span>
+          <h3>Leia a pista</h3>
+          <p>Cada vírus que desce traz uma pista ou situação sobre um termo da aula.</p>
+        </div>
+        <div class="passo">
+          <span class="passo-numero">02</span>
+          <h3>Arraste o termo</h3>
+          <p>Leve o termo certo da lista ao lado e solte em cima do vírus.</p>
+        </div>
+        <div class="passo">
+          <span class="passo-numero">03</span>
+          <h3>Proteja os servidores</h3>
+          <p>Cada vírus que chega lá embaixo derruba um servidor. Sem servidores, o sistema cai!</p>
+        </div>
+      </div>
+
+      <!-- Ondas -->
+      <div class="ondas-linha">
+        <div class="onda-chip"><small>Onda 1</small><strong>Reconhecimento</strong><span>1 vírus por vez</span></div>
+        <div class="onda-chip"><small>Onda 2</small><strong>Ataque</strong><span>até 2 vírus, mais rápidos</span></div>
+        <div class="onda-chip"><small>Onda 3</small><strong>Invasão</strong><span>até 3 vírus com situações</span></div>
+        <div class="onda-chip chefe-chip"><small>Final</small><strong>👾 Chefe</strong><span>3 termos certos seguidos</span></div>
+      </div>
+
+      <!-- Dicas rápidas -->
+      <ul class="dicas">
+        <li><strong>⏭ Pular:</strong> vê a resposta e perde o combo, mas não perde vida.</li>
+        <li><strong>Combo:</strong> acertos seguidos multiplicam os pontos (até x5).</li>
+        <li><strong>Revisão:</strong> entre as ondas você revisa o que errou, e esses termos voltam primeiro.</li>
+        <li><strong>Esc</strong> pausa o jogo.</li>
+      </ul>
+    </section>
+
+    <!-- GLOSSÁRIO: os 16 termos para estudar antes de jogar -->
+    <div id="glossario" class="modal escondido">
+      <div class="modal-caixa">
+        <div class="modal-topo">
+          <h2>📖 Glossário</h2>
+          <button id="btn-fechar-glossario" class="btn-icone" title="Fechar (Esc)">✕</button>
+        </div>
+        <div id="glossario-lista" class="glossario-lista"></div>
+      </div>
+    </div>
+
+    <!-- TELA 2: JOGO -->
+    <section id="tela-jogo" class="tela">
+      <header class="hud">
+        <div class="hud-item">
+          <span class="hud-rotulo">Vidas</span>
+          <span id="vidas" class="hud-valor"></span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-rotulo">Onda</span>
+          <span id="onda" class="hud-valor"></span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-rotulo">Pontos</span>
+          <span id="pontos" class="hud-valor"></span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-rotulo">Combo</span>
+          <span id="combo" class="hud-valor"></span>
+        </div>
+        <div class="hud-acoes">
+          <button id="btn-pausa" class="btn-icone" title="Pausar (Esc)">⏸</button>
+          <button id="btn-som" class="btn-icone" title="Ligar/desligar som">🔊</button>
+        </div>
+      </header>
+
+      <div class="jogo-layout">
+        <div class="jogo-principal">
+          <div id="area" class="area">
+            <div id="virus-container"></div>
+
+            <!-- Rack de servidores que os vírus querem derrubar (um servidor por vida) -->
+            <div id="servidores" class="servidores"></div>
+
+            <!-- Aviso de nova onda -->
+            <div id="banner" class="banner escondido"></div>
+
+            <!-- Aviso quando um vírus derruba um servidor ou o jogador pula -->
+            <div id="alerta" class="alerta escondido">
+              <div class="alerta-caixa">
+                <p id="alerta-titulo" class="alerta-titulo"></p>
+                <p>A resposta era <strong id="alerta-resposta"></strong>.</p>
+                <p id="alerta-explicacao" class="alerta-explicacao"></p>
+                <button id="btn-continuar" class="btn btn-principal">Continuar (Enter)</button>
+              </div>
+            </div>
+
+            <!-- Pausa -->
+            <div id="pausa" class="alerta escondido">
+              <div class="alerta-caixa pausa-caixa">
+                <p class="alerta-titulo">⏸ Jogo pausado</p>
+                <p>Respire, revise as opções ao lado e volte quando quiser.</p>
+                <button id="btn-retomar" class="btn btn-principal">Continuar (Esc)</button>
+                <button id="btn-desistir" class="btn">Encerrar partida</button>
+              </div>
+            </div>
+
+            <!-- Revisão entre ondas: termos errados na onda que acabou -->
+            <div id="revisao-onda" class="alerta escondido">
+              <div class="alerta-caixa revisao-caixa">
+                <p class="alerta-titulo">📚 Revise antes de continuar</p>
+                <p>Você errou estes termos na onda. Eles voltam primeiro na próxima!</p>
+                <ul id="revisao-lista" class="revisao-lista"></ul>
+                <button id="btn-proxima-onda" class="btn btn-principal">Próxima onda (Enter)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="barra-inferior">
+            <p id="mensagem" class="mensagem"></p>
+            <button type="button" id="btn-pular" class="btn btn-pular" title="Mostra a resposta do vírus mais baixo, sem perder vida">⏭ Pular</button>
+          </div>
+        </div>
+
+        <!-- Opções de resposta ao lado -->
+        <aside class="painel">
+          <div class="painel-topo">
+            <h3>Opções de resposta</h3>
+            <p class="painel-dica">Arraste o termo até o vírus certo</p>
+          </div>
+          <div id="opcoes" class="opcoes"></div>
+          <p id="restantes" class="restantes"></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TELA 3: RESULTADO -->
+    <section id="tela-fim" class="tela">
+      <h1 id="fim-titulo"></h1>
+
+      <div class="cartao resultado">
+        <p id="fim-recorde" class="novo-recorde escondido">🏆 Novo recorde!</p>
+        <p id="fim-pontos" class="destaque"></p>
+        <p id="fim-melhor" class="recorde"></p>
+        <div class="estatisticas">
+          <div><span id="fim-onda"></span><small>onda alcançada</small></div>
+          <div><span id="fim-combo"></span><small>maior combo</small></div>
+          <div><span id="fim-dominados"></span><small>termos dominados</small></div>
+        </div>
+      </div>
+
+      <div class="cartao">
+        <h2>📚 Revise estes termos</h2>
+        <ul id="lista-revisao"></ul>
+      </div>
+
+      <div class="botoes-fim">
+        <button id="btn-jogar-novamente" class="btn btn-principal">Jogar de novo</button>
+        <button id="btn-menu" class="btn">Voltar ao início</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="dados.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
